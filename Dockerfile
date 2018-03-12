@@ -20,6 +20,9 @@ RUN curl -o /tmp/pdns.tar.bz2 -SL https://downloads.powerdns.com/releases/pdns-$
 RUN curl -o /tmp/poweradmin.tar.gz -SL http://jaist.dl.sourceforge.net/project/poweradmin/poweradmin-2.1.7.tgz \
        && tar xzf /tmp/poweradmin.tar.gz -C /var/www/html/ --strip=1
 
+RUN cp /var/www/html/inc/config-me.inc.php /var/www/html/inc/config.inc.php
+RUN chown -R apache. /var/www/html/*
+
 RUN yum -y install bind-utils iproute
 
 COPY entrypoint.sh /
